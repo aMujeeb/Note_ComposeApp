@@ -2,6 +2,7 @@ package com.mujapps.notecomposeapp.model
 
 import androidx.room.*
 import com.mujapps.notecomposeapp.data.DateConverter
+import com.mujapps.notecomposeapp.data.UUIDConverter
 import java.time.Instant
 import java.time.LocalDateTime
 import java.util.*
@@ -9,6 +10,7 @@ import java.util.*
 @Entity(tableName = "notes_table")
 data class Note(
     @PrimaryKey
+    @TypeConverters(UUIDConverter::class)
     val id: UUID = UUID.randomUUID(),
     @ColumnInfo(name = "note_title")
     val title: String,

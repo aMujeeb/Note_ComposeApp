@@ -31,7 +31,7 @@ class NotesScreenViewModel @Inject constructor(
                 if (!notes.isNullOrEmpty()) {
                     _notList.value = notes
                 } else {
-
+                    _notList.value = emptyList()
                 }
             }
         }

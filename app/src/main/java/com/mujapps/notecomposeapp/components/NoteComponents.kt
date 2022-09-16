@@ -48,6 +48,7 @@ fun NoteInputText(
     )
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun AddNoteButton(
     modifier: Modifier = Modifier,
@@ -55,6 +56,7 @@ fun AddNoteButton(
     onClick: () -> Unit = {},
     enable: Boolean = true
 ) {
+
     Button(
         onClick = onClick,
         shape = CircleShape,

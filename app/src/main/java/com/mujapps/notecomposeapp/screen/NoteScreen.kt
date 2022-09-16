@@ -13,10 +13,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,14 +28,17 @@ import com.mujapps.notecomposeapp.components.AddNoteButton
 import com.mujapps.notecomposeapp.components.NoteInputText
 import com.mujapps.notecomposeapp.data.NotesDataSource
 import com.mujapps.notecomposeapp.model.Note
+import com.mujapps.notecomposeapp.util.formatDate
 import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun NoteScreen(
     notes: List<Note>,
     onAddNote: (Note) -> Unit,
     onRemoveNote: (Note) -> Unit
 ) {
+    val keyBoardController = LocalSoftwareKeyboardController.current
 
     var title by remember {
         mutableStateOf("")
@@ -90,6 +95,7 @@ fun NoteScreen(
                     title = ""
                     description = ""
                     Toast.makeText(context, "Added Note", Toast.LENGTH_SHORT).show()
+                    keyBoardController?.hide()
                 }
             })
         }
@@ -136,10 +142,10 @@ fun NoteRow(
                 text = note.description,
                 style = MaterialTheme.typography.subtitle1
             )
-           /* Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+            Text(
+                text = formatDate(note.entryDate.time),
                 style = MaterialTheme.typography.subtitle1
-            )*/
+            )
         }
     }
 }

@@ -10,7 +10,7 @@ import com.mujapps.notecomposeapp.model.Note
     version = 1,
     exportSchema = true
 )
-@TypeConverters(DateConverter::class)
+@TypeConverters(DateConverter::class, UUIDConverter::class)
 abstract class NoteDataBase : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 }
