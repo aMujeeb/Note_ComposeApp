@@ -136,10 +136,10 @@ fun NoteRow(
                 text = note.description,
                 style = MaterialTheme.typography.subtitle1
             )
-            Text(
+           /* Text(
                 text = note.entryDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 style = MaterialTheme.typography.subtitle1
-            )
+            )*/
         }
     }
 }
